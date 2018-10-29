@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Tickets</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <form method="POST" action="/form">
+        <fieldset>
+            <!--a border-->
+            <legend>Booking Details</legend>
+            <!--name of the for,-->
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+            </div>
+            <div>
+                <label for="numTickets">No. of Tickets:</label>
+                <input type="text" id="numTickets" name="numTickets">
+            </div>
+            <div>
+                <span>Gender:</span>
+                <br>
+                <span>
+                    <input name="gender" type="radio" value="Male">Male
+                    <input name="gender" type="radio" value="Female">Female
+                </span>
+            </div>
+            <!-- More form elements -->
+            <div>
+                <span>Select your favourite team:</span>
+                <select name = "team"onchange="teamSelected(this.value)">
+                    <!--this  ==  select-->
+                    <option value="nan">Please select a team:</option>
+                    <option value="Avengers">Avengers</option>
+                    <option value="JLA">Justice League</option>
+                </select>
+            </div>
+
+            <div>
+                <span>Select your favourite hero:</span>
+                <select name = "hero" id="hero" disabled>
+                </select>
+            </div>
+
+            <div>
+                <span>Remarks:</span>
+                <br>
+                <textarea name = "remarks" cols=70 rows=12></textarea>
+            </div>
+
+
+            <div class="submit">
+                <input type="submit" value="Submit">
+            </div>
+        </fieldset>
+    </form>
+
+
+    <script>
+        var avengers = ["Captain America", "Iron Man", "Thor", "Hulk", "Black Widow", "Hawkeye"];
+        var jla = ["Superman", "Batman", "Wonder Woman", "Flash", "Green Lantern", "Aquaman"];
+
+        function teamSelected(teamValue) {
+
+            // alert(teamValue);
+            var heroSelect = document.getElementById("hero");
+            heroSelect.options.length = 0; // claer all the elems 
+
+            if (teamValue == "Avengers") {
+
+                avengers.forEach(function (item) {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    heroSelect.add(option);
+                });
+
+                heroSelect.disabled = false;
+
+            } else if (teamValue == "JLA") {
+
+                jla.forEach(function (item) {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+                    heroSelect.add(option);
+                });
+
+                heroSelect.disabled = false;
+
+            } else {
+
+                heroSelect.disabled = true;
+
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
